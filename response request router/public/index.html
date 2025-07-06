@@ -9,7 +9,7 @@
     <script>
         async function fetchData() {
             try {
-                const a = await fetch('/',{method:'delete'})
+                const a = await fetch('/',{method:'POST'});
                 const b=await a.text();
                 console.log(b);
                 

@@ -1,9 +1,17 @@
 const express = require('express')
 const app = express()
 const port = 3000
-app.use(express.static('public'))
+const blogs = require('./router/blog.js')
+
+app.use('/blog', blogs);
+
+
+// app.use(express.static('public'))
+
 
 app.get('/', (req, res) => {
+  console.log("hey its a GET request");
+  
   res.send('Hello World!')
 })
 app.post('/', (req, res)=>{
@@ -18,9 +26,9 @@ app.put('/',(req,res)=>{
 // app.get('/index', (req, res) => {
 //     console.log('Received a GET request on /index');
 //   res.send('hello from index!')})
-// app.get('/index', (req, res) => {
+app.get('/index', (req, res) => {
    
-//   res.sendFile('templates/index.html',{root: __dirname});})
+  res.sendFile('templates/index.html',{root: __dirname});})
 app.get('/api', (req, res) => {
     console.log('Received a GET request on /index');
   res.json({a:1, b: 2, c: 3});
