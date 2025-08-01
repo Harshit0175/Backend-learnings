@@ -1,1 +1,46 @@
-inf dffdghth
+express ek npm package hai aur ye ek framework hai 
+so basiclaly 
+express manage everthing from receiving the request and giving the response
+
+| Feature  | Node.js                         | Express.js                        |
+| -------- | ------------------------------- | --------------------------------- |
+| Kya hai? | Runtime environment             | Framework (Node.js ke upar)       |
+| Kaam     | Sab kuch manually               | Web app banana easy karta hai     |
+| Routing  | Khud likhna padta hai           | Built-in routing hota hai         |
+| Code     | Lamba aur complex ho sakta hai  | Short aur clean hota hai          |
+| Use      | Core operations (server, files) | Web server, API, middleware, etc. |
+
+
+
+Node.js Kya Hai?
+
+Ek runtime environment hai jisme hum JavaScript ko server-side pe chala sakte hain.
+
+Backend banane ke liye use hota hai (jaise Python, PHP).
+
+Isse hum:
+
+Server create kar sakte hain
+
+File read/write kar sakte hain
+
+HTTP request handle kar sakte hain
+
+Lekin har cheez manually karni padti hai. Agar koi choti si API bhi banani ho, to pura route aur logic khud likhna padta hai — thoda tedious hota hai.
+
+ Express.js Kya Hai?
+
+Ye ek framework hai jo Node.js ke upar bana hai.
+
+Express.js ka kaam hai web applications ya APIs banana asaan banana.
+
+Ye provide karta hai:
+
+Simple routing (app.get(...))
+
+Middleware support (e.g. authentication, logging)
+
+Easy request/response handling
+
+Database integration ka support
+
