@@ -22,6 +22,13 @@ app.get('/file/:filename', function(req,res){
     fs.readFile(`./files/${req.params.filename}`,'utf-8' ,function(err,filesdata){
         res.render('show',{filename:req.params.filename, filesdata:filesdata})
         // console.log(filesdata);
+    })  
+    })
+    ;
+    app.get('/edit/:filename', function(req,res){
+    fs.readFile(`./files/${req.params.filename}`,'utf-8' ,function(err,filesdata){
+        res.render('edit',{filesname:req.params.filename})
+        // console.log(filesdata);
         
     })
 
