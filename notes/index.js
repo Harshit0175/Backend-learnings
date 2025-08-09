@@ -6,6 +6,7 @@ const fs=require('fs');
 
 
 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.static(path.join(__dirname,'public')));
@@ -33,6 +34,16 @@ app.get('/file/:filename', function(req,res){
     })
 
 })
+app.post('/edit',(req,res)=>{
+    fs.rename(`./files/${req.body.Previous}`,`./files/${req.body.new}`,function(err,filesdata){
+        res.redirect('/')
+        // console.log(filesdata);
+        
+
+    })
+    
+
+});
 app.post('/create', function(req,res){
     // console.log(req.body);
 
