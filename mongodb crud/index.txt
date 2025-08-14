@@ -1,0 +1,7 @@
+Database -> collections(koi collections bnana jisme baki ek jesa data store kr ske jese users) -> documents( mtlb jese user collections ke andar sare user store krna)
+
+
+code------>
+mongoose.connect -> Database create hoti hai
+model create     -> collections create hoti hai
+create code      -> documents create hote hai
