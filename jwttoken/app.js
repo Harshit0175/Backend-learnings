@@ -4,6 +4,7 @@ const app=express();
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 const usermodel=require('./models/user')
+
 const path=require('path')
 app.set('view engine','ejs');
 app.use(express.json());
@@ -13,6 +14,7 @@ app.use(cookieParser())
 app.get('/',(req,res)=>{
     res.render('index')
 });
+
 app.post('/create',async (req,res)=>{
     let {username,email,password,age}=req.body;
 
@@ -37,7 +39,8 @@ app.post('/create',async (req,res)=>{
     
 })
 app.get('/login',(req,res)=>{
-    res.render('login')
+    res.render('login')        
+
 })
 app.post('/login',async(req,res)=>{
 let loginuser= await usermodel.findOne({email:req.body.email})
