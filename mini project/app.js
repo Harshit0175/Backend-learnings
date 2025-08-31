@@ -41,6 +41,24 @@ bcrypt.hash(password,salt, async (err,hash)=>{
 
    
 })
+app.get('/login',(req,res)=>{
+res.render('login')
+})
+app.post('/login',async(req,res)=>{
+    const {password,email}=req.body;
+    const useremail= await usermodel.findOne({email})
+
+    if(!useremail) return res.status(500).send('something went wrong')
+        bcrypt.compare(password,useremail.password,(err,result)=>{
+    if(result) res.status(200).send('you can login')
+        else res.redirect('/login')
+})
+})
+app.get('/logout',(req,res)=>{
+res.cookie("token","")
+res.redirect('/login')
+})
+
 app.listen(3000,()=>{
     console.log('Server is running on http://localhost:3000');
 });
