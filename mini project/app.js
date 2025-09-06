@@ -5,6 +5,7 @@ const postmodel = require('./models/post')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+const post = require('./models/post');
 
 
 
@@ -19,9 +20,30 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 app.get('/profile', isLoggedIn,async (req, res) => {
-    const user=await usermodel.findOne({email:req.user.email})
-    console.log(user);
+    const user=await usermodel.findOne({email:req.user.email}).populate('post')
+    // console.log(user);
     res.render('profile',{user})
+})
+app.get('/like/:id', isLoggedIn,async (req, res) => {
+    const post=await postmodel.findOne({_id:req.params.id}).populate('user')
+if(post.likes.indexOf(req.user._id)===-1){
+    post.likes.push(req.user._id);
+}else{
+    post.likes.splice(post.likes.indexOf(req.user._id),1)
+}
+await post.save();
+    res.redirect("/profile")
+})
+app.post('/post', isLoggedIn,async (req, res) => {
+    const user=await usermodel.findOne({email:req.user.email})
+    let {content}=req.body;
+   let post= await postmodel.create({
+    user:user._id,
+    content,
+   });
+   user.post.push(post._id);
+   await user.save();
+   res.redirect('/profile')
 })
 app.post('/register', async (req, res) => {
     const { name, username, password, age, email } = req.body;
@@ -46,6 +68,7 @@ app.post('/register', async (req, res) => {
 
 
 })
+
 app.get('/login', (req, res) => {
     res.render('login')
 })
